@@ -1,22 +1,15 @@
 #!/usr/bin/env bash
 
-echo "Changing to /workspace directory"
-cd /workspace
+ PROJECT_ROOT='/workspace/terraform-beginner-bootcamp-2023'
 
-echo "Removing existing awscliv2.zip and aws directory"
-rm -f '/workspace/awscliv2.zip'
-rm -rf '/workspace/aws'
+ cd /workspace
 
-echo "Downloading AWS CLI installation package"
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    rm -f '/workspace/awscliv2.zip'
+    rm -rf '/workspace/aws'
 
-echo "Unzipping AWS CLI installation package"
-unzip awscliv2.zip
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
 
-echo "Running AWS CLI installation with --update flag"
-sudo ./aws/install --update
+      sudo ./aws/install --update
 
-echo "Changing to the project root directory"
-cd $PROJECT_ROOT
-
-echo "Current directory: $(pwd)"  # Print the current directory for debugging
+      cd $PROJECT_ROOT
