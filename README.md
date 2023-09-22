@@ -148,7 +148,7 @@ AWS CLI is installed for the project via the bash script [`./bin/install_aws_cli
 
 [AWS CLI Env Vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
 
-:warning: Don't install via Homebrew:ambulance::roller_coaster:
+:warning: Don't install via Homebrew :ambulance::roller_coaster:
 
 :rotating_light: We can check if our AWS credentials are configured correctly by running the following AWS CLI command. 
 ```sh
