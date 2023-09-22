@@ -165,3 +165,5 @@ If successful, a json payload should be rerturned that looks like this.
 ```
 
 We will need to generate AWS credentials in order to use the AWS CLI.
+
+#### bug magically fixed itself 
