@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 cd /workspace
 
 rm -f '/workspace/awscliv2.zip'
