@@ -2,7 +2,7 @@
 
 
 ## Semantic versioning
-This project will utilise semantic versioning i.e. 0.0.0 where the first digit is a **Major Change** and this resets the latter two digits back to zero when implimented, the second digit if for a **Minor Change** and the latter is for a **bug fix/patch** 
+This project will utilise semantic versioning i.e. 0.0.0 where the first digit is a **Major Change** and this resets the latter two digits back to zero when implimented, the second digit if for a **Minor Change** and the latter is for a **bug fix/patch.** 
 
 [Semantic Versioning Documentation](https://semver.org/)
 
@@ -97,7 +97,7 @@ We need to be careful when using the init because it will not re-run if we resta
 
 ### Env Command 
 
-We can list out all enviroment variables (Env Vars) using the `env` command 
+We can list out all enviroment variables (Env Vars) using the `env` command. 
 
 The grep command is a very useful linux command allowing you to filter quickly to specific Env Vars `env | grep AWS_ ` 
 
@@ -117,7 +117,7 @@ Within a bash script we can set an Env Var without writing export e.g.
 ```sh
 #!/usr/bin/env bash
 
-Hello=world
+Hello=`world`
 
 echo $Hello
 ```
@@ -139,3 +139,29 @@ All future workspaces launched will set the env vars for all bash terminals open
 
 You can also set Env Vars in the `.gitpod.yaml` but this can only contain non-sensitive Env Vars.
 
+
+## AWS CLI Installation for this project 
+
+AWS CLI is installed for the project via the bash script [`./bin/install_aws_cli`](./bin/install_aws_cli)
+
+[Getting Started Install (AWS CLI)](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+[AWS CLI Env Vars](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html)
+
+:warning: Don't install via Homebrew:ambulance::roller_coaster:
+
+:rotating_light: We can check if our AWS credentials are configured correctly by running the following AWS CLI command. 
+```sh
+aws sts get-caller-id
+```
+If successful, a json payload should be rerturned that looks like this. 
+
+```JSON
+{
+    "UserId": "AIDA7RRCITNEJHVPKPEWS",
+    "Account": "979354389342",
+    "Arn": "arn:aws:iam::199758341882:user/Owen"
+}
+```
+
+We will need to generate AWS credentials in order to use the AWS CLI.
