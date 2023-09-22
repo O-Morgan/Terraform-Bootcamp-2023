@@ -2,7 +2,9 @@
 
 
 ## Semantic versioning
-This project will utilise semantic versioning 
+This project will utilise semantic versioning i.e. 0.0.0 where the first digit is a **Major Change** and this resets the latter two digits back to zero when implimented, the second digit if for a **Minor Change** and the latter is for a **bug fix/patch** 
+
+[Semantic Versioning Documentation](https://semver.org/)
 
 
 
@@ -61,10 +63,10 @@ when executing a bash script we can use the `./` shorthand notation to execute t
 
 
 #### Execution Considerations 
-eg. `./bin/install_terraform_cli`
+e.g. `./bin/install_terraform_cli`
 If we are using a script in .gitpod,yaml we need to point the script to a program to interpret it. 
 
-eg, `source ./bin/install_terraform_cli`
+e.g. `source ./bin/install_terraform_cli`
 
 
 
@@ -83,16 +85,57 @@ chmod 744 ./bin/install_terraform_cli
 
 
 
-### Github Lifecycle (Berfore, Init, Command)
+## Github Lifecycle (Before, Init, Command)
 We need to be careful when using the init because it will not re-run if we restart an existing workspace.
 
-<div style="display: flex; justify-content: space-between;">
-    <img src="image.png" alt="Alt text" style="width: 48%;">
-    <img src="image-1.png" alt="Alt text" style="width: 48%;">
-</div>
+[Gitpod Documentation](https://www.gitpod.io/docs/configure/workspaces/tasks)
 
 
 
 
+## Working Env Vars
 
+### Env Command 
+
+We can list out all enviroment variables (Env Vars) using the `env` command 
+
+The grep command is a very useful linux command allowing you to filter quickly to specific Env Vars `env | grep AWS_ ` 
+
+#### Setting and Unsetting Env Vars 
+
+In the terminal we can set using `export Hello=world`
+
+in the terminal we can unset using `unset Hello`
+
+We can set an Env Var temporarily when just running a command.
+
+```sh
+Hello=`world` ./bin/print_message
+```
+Within a bash script we can set an Env Var without writing export e.g.
+
+```sh
+#!/usr/bin/env bash
+
+Hello=world
+
+echo $Hello
+```
+#### Printing Vars
+
+You can print an Env Var using echo e.g. `echo $Hello`
+
+#### Scoping of Env Vars 
+When you open up new bash terminals in VSCode it will not be aware of Env Vars that you have set in another window, if you want Env Vars to persist across all future bash terminals that are open you need to set the Env Vars in your bash profile. e.g. `bash_profile` 
+
+#### Persisting Env Vars in gitpod 
+
+We can persist Env Vars into gitpod by storing them in Gitpod Secrets Storage.
+
+```
+gp env Hello=world 
+```
+All future workspaces launched will set the env vars for all bash terminals opened in those workspaces.
+
+You can also set Env Vars in the `.gitpod.yaml` but this can only contain non-sensitive Env Vars.
 
