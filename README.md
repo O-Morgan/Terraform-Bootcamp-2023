@@ -207,3 +207,33 @@ Terraform uses a state file (usually named `terraform.tfstate`) to keep track of
 
 #### Terraform Directory
 `terraform` dierctory contains binaries of terraform providers. 
+
+## Issues with Terraform Cloud Login and Gitpod Workspace 
+When attempting to run `terraform login` it will launch a wizard view to generate a token, however, it doesn't work as expected in Gitpod VsCode in the browser.
+
+The work around is to manually generate a token in Terraform Cloud 
+
+```
+https://app.terraform.io/app/settings/tokens?source=terraform-login 
+```
+
+Then create the file mannualy here: 
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+Then open the file here:
+```sh
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+
+Provide the following code (replace your token in the file):
+```json
+{
+    "credentials": {
+     "app.terraform.io": {
+        "token": "Your-Terraform-Cloud-Token-Here"
+    }
+  }
+}
+```
+Just for now - every login well need to follow these steps until automated 
