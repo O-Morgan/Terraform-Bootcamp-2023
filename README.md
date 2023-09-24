@@ -185,7 +185,6 @@ Typing `terraform` displays a list of all terraform commands.
 The terraform command run to initialise the project is `terraform init` which downloads the binaries for the terraform providers that will be used in this project. 
 
 #### Terraform Plan
-
 Execute the `terraform plan` command in your project directory. Terraform will analyse your configuration files, compare them to the current state of your infrastructure (which it tracks in a state file), and determine the actions required to bring your infrastructure into alignment with the configuration.
 
 Terraform will display a summary of the changes it plans to make, including resource creation, modification, or deletion.
@@ -193,14 +192,18 @@ It will also identify any variables or data sources used in the configuration.
 The command will output a detailed execution plan, showing you what Terraform intends to do, such as creating or updating specific resources.
 
 #### Terraform Apply
-
 `terraform apply` is a command in Terraform, an infrastructure-as-code (IAC) tool, that is used to apply the changes defined in your Terraform configuration to your infrastructure. It is typically the command you use after running terraform plan and reviewing the execution plan to ensure that Terraform makes the desired changes to your infrastructure resources.
 
-### Terraform Lock Files
+#### Terraform Destroy 
+This will destroy resources, remebering you will have to authorise the `terraform destroy` by entering yes once the command is run.
+
+You can automate this approval by running `terraform apply --auto-approve` no futher action will be required and the resources will be destroyed
+
+#### Terraform Lock Files
 `terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project, the terraform lock file should be committed to the **Version Control System** (VSC) e.g. GitHub. 
 
-### Terraform state Files 
+#### Terraform state Files 
 Terraform uses a state file (usually named `terraform.tfstate`) to keep track of the current state of your infrastructure. While not a lock file, it serves as a record of your deployed resources and their properties. It's important to manage and lock this state file when collaborating with others.
 
-### Terraform Directory
+#### Terraform Directory
 `terraform` dierctory contains binaries of terraform providers. 
