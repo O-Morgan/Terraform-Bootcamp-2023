@@ -1,37 +1,33 @@
 # Terraform Beginner Bootcamp 2023 week 0
 
-## Table of Contents
+## Table of Contents 
 
-* [Semantic Versioning](#semantic-versioning)
-* [Considerations with Terraform CLI Changes](#considerations-with-terraform-cli-changes)
-    * [Install Terraform CLI](#install-terraform-cli)
-* [Considerations for Linux Distribution](#considerations-for-linux-distribution)
-    * [Checking OS Version](#checking-os-version)
-* [Refactoring into Bash Scripts](#refactoring-into-bash-scripts)
-    * [Shebang Considerations](#shebang-considerations)
-    * [Execution Considerations](#execution-considerations)
-    * [Linux Permission Considerations](#linux-permission-considerations)
-* [Github Lifecycle (Before, Init, Command)](#github-lifecycle-before-init-command)
+  * [Semantic versioning](#semantic-versioning)
+  * [Considerations with Terraform CLI Changes](#considerations-with-terraform-cli-changes)
+  * [Considerations for Linux Distribution](#considerations-for-linux-distribution)
+    + [Refactoring into Bash Scripts](#refactoring-into-bash-scripts)
+    + [Shebang Considerations](#shebang-considerations)
+    + [Execution Considerations](#execution-considerations)
+    + [Linux Permission Considerations](#linux-permission-considerations)
+  * [Gitpod Lifecycle (Before, Init, Command)](#gitpod-lifecycle--before--init--command-)
   * [Working Env Vars](#working-env-vars)
-  * [Env Command](#env-command)
-  * [Setting and Unsetting Env Vars](#setting-and-unsettting-env-vars)
-  * [Printing Vars](#printing-vars)
-  * [Scoping of Env Vars](#scoping-of-env-vars)
-  * [Persisting Env Vars in gitpod](#persisting-env-vars-in-gitpod)
-* [AWS CLI Installation for this project](#aws-cli-installation-for-this-project)
-    * [Getting Started Install (AWS CLI)](#getting-started-install-aws-cli)
-    * [AWS CLI Env Vars](#aws-cli-env-vars)
-* [Terraform Basics](#terraform-basics)
-    * [Terraform Registry](#terraform-registry)
-    * [Terraform cnsole](#terraform-cnsole)
-    * [Terraform Init](#terraform-init)
-    * [Terraform Plan](#terraform-plan)
-    * [Terraform Apply](#terraform-apply)
-    * [Terraform Destroy](#terraform-destroy)
-    * [Terraform Lock Files](#terraform-lock-files)
-    * [Terraform state Files](#terraform-state-files)
-    * [Terraform Directory](#terraform-directory)
-* [Issues with Terraform Cloud Login and Gitpod Workspace](#issues-with-terraform-cloud-login-and-gitpod-workspace)
+    + [Env Command](#env-command)
+    + [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
+    + [Printing Vars](#printing-vars)
+    + [Scoping of Env Vars](#scoping-of-env-vars)
+    + [Persisting Env Vars in gitpod](#persisting-env-vars-in-gitpod)
+  * [AWS CLI Installation for this project](#aws-cli-installation-for-this-project)
+  * [Terraform Basics](#terraform-basics)
+    + [Terraform Registry](#terraform-registry)
+    + [Terraform Console](#terraform-console)
+    + [Terraform Init](#terraform-init)
+    + [Terraform Plan](#terraform-plan)
+    + [Terraform Apply](#terraform-apply)
+    + [Terraform Destroy](#terraform-destroy)
+    + [Terraform Lock Files](#terraform-lock-files)
+    + [Terraform State Files](#terraform-state-files)
+    + [Terraform Directory](#terraform-directory)
+  * [Issues with Terraform Cloud Login and Gitpod Workspace](#issues-with-terraform-cloud-login-and-gitpod-workspace)
 
 
 ## Semantic versioning
@@ -118,7 +114,7 @@ chmod 744 ./bin/install_terraform_cli
 
 
 
-## Github Lifecycle (Before, Init, Command)
+## Gitpod Lifecycle (Before, Init, Command)
 We need to be careful when using the init because it will not re-run if we restart an existing workspace.
 
 [Gitpod Documentation](https://www.gitpod.io/docs/configure/workspaces/tasks)
@@ -209,7 +205,7 @@ Terraform sources their providers and modules from the terraform regesitry which
 
 **Modules** are a fundamental concept in Terraform that promotes code reuse, maintainability, and collaboration in your infrastructure-as-code (IAC) projects.
 
-### Terraform cnsole 
+### Terraform Console 
 
 Typing `terraform` displays a list of all terraform commands.
 
@@ -235,7 +231,7 @@ You can automate this approval by running `terraform apply --auto-approve` no fu
 #### Terraform Lock Files
 `terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project, the terraform lock file should be committed to the **Version Control System** (VSC) e.g. GitHub. 
 
-#### Terraform state Files 
+#### Terraform State Files 
 Terraform uses a state file (usually named `terraform.tfstate`) to keep track of the current state of your infrastructure. While not a lock file, it serves as a record of your deployed resources and their properties. It's important to manage and lock this state file when collaborating with others.
 
 #### Terraform Directory
