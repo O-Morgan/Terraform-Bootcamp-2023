@@ -32,7 +32,7 @@ We can set Terraform Cloud Variables to be sensative so they are not shown visib
 
 We can use the `-var` flag to set an input variable or override a variable in the tfvars file e.g. `terraform -var user_uuid="m-user-id"`
 
-### var-File-Flag
+### var-file-flag
 
 Explicit -var Command-Line Flags: If you pass a variable using the -var flag when running Terraform commands (e.g., terraform apply -var="myvar=myvalue"), the value provided via the command-line flag takes the highest precedence. It will override any other values set elsewhere.
 
@@ -76,3 +76,36 @@ export TF_VAR_example=environment_value
 
 7. HCL Expressions (if using variable expressions): In some cases, you can use HCL expressions to compute variable values based on other variables or data sources. These computed values take precedence over default values.
 
+### Terraform Import 
+
+
+
+## Dealing with Configuration Drift
+
+When someone manually deletes deployed resources via the console, by running `terraform plan` this configuration drift will be identified and you can run `terraform apply`which will restore the resouce and deploy any new configurations. This is what terraform does best, some other IAC tools may not detect this. 
+
+### What happens if we lose the State File
+
+If you lose the `state file` you most likely have to tear down all your cloud infastructure manually. 
+
+You can use `terraform import` but this wont work for all cloud resources, you need to check the terraform provides documentation for which resources support `import`
+
+### Fix Missing Resources with Terraform Import
+```h
+import {
+  to = aws_s3_bucket.bucket
+  id = "bucket-name"
+}
+``` 
+```terraform import aws_s3_bucket.bucket bucket-name```
+
+[Terraform Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+[AWS S3 Bucket Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+
+### Fix Mannual Configuration 
+
+If someone goes and deletes or modifys cloud resources manually through ClickOps. 
+
+If we run `terraform plan` again it will put our infastructure back into the expected state fixing configuration drift.
