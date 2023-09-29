@@ -109,3 +109,70 @@ import {
 If someone goes and deletes or modifys cloud resources manually through ClickOps. 
 
 If we run `terraform plan` again it will put our infastructure back into the expected state fixing configuration drift.
+
+
+### Dealing with Configuration Drift
+
+When someone manually deletes deployed resources via the console, by running `terraform plan` this configuration drift will be identified and you can run `terraform apply`which will restore the resouce and deploy any new configurations. This is what terraform does best, some other IAC tools may not detect this. 
+
+### What happens if we lose the State File
+
+If you lose the `state file` you most likely have to tear down all your cloud infastructure manually. 
+You can use `terraform import` but this wont work for all cloud resources, you need to check the terraform provides documentation for which resources support `import`
+
+### Fix Missing Resources with Terraform Import
+
+```h
+import {
+  to = aws_s3_bucket.bucket
+  id = "bucket-name"
+}
+``` 
+```terraform import aws_s3_bucket.bucket bucket-name```
+[Terraform Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+[AWS S3 Bucket Import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket#import)
+
+### Fix Mannual Configuration 
+
+If someone goes and deletes or modifys cloud resources manually through ClickOps. 
+If we run `terraform plan` again it will put our infastructure back into the expected state fixing configuration drift.
+
+### Fix using Terraform Refresh
+
+```sh
+terraform apply -refresh-only -auto-approve
+```
+
+## Terraform Modules
+
+### Terraform Module Structure
+
+It is recommended to place in a `modules` directory when locally developing modules but you can it whatever you like i.e. we have named our first one `modules/terrahouse_aws`
+A module should contain.
+
+### Passing Input Variables 
+
+We can pass input variables to our module 
+The module has to declare the terraform variables in it's own `variables.tf`
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.user_uuid
+  s3_bucket_name = var.s3_bucket_name
+}
+```
+
+### Module Sources 
+
+Using the source we can import the module from various places e.g. 
+- locally
+- GitHub
+- Terraform Registry 
+```tf
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+}
+```
+[Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
+
+## Fix using 
