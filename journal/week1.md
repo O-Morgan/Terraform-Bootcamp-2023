@@ -175,4 +175,62 @@ module "terrahouse_aws" {
 ```
 [Module Sources](https://developer.hashicorp.com/terraform/language/modules/sources)
 
-## Fix using 
+## Considerations when using ChatGPT to write Terraform 
+
+LLMs such as ChatGPT may not be trainied on the latest documentation or information about terraform.
+
+It may likely produce older examples that could be depricated often affecting providers. 
+
+[Website hosting](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration)
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
+
+
+## Working with File in Terraform 
+
+### fileexists function
+
+This is a built in terraform function, to check the existance of a file. 
+
+```tf
+variable "error_html_filepath" {
+  description = "The file path for error.html"
+  type        = string
+
+  validation {
+    condition     = fileexists(var.error_html_filepath)
+    error_message = "The provided path for error.html does not exist"
+  }
+}
+```
+### Filemd5
+
+filemd5 can be used to ETag documentation within Terraform, without this terraform wouldnt recoginse changes in documetation as it's primarily focus will be to deploy the infastructure. However, if you ETag documentation every time it's changed the ETag number would change allowing for terraform to identify this when running `terraform apply`, where it will also deploy and chage the documets within the infrastructre. 
+
+```tf
+resource "aws_s3_object" "error_html" {
+  bucket = aws_s3_bucket.website_bucket.id
+  key    = "error.html"
+  source = (var.error_html_filepath)
+
+  etag   = filemd5(var.error_html_filepath)
+}
+```
+
+[filemd5](https://developer.hashicorp.com/terraform/language/functions/filemd5)
+
+### Path Variable 
+
+In terrafor, there is a special variable called `path` that allows us to reference local paths:
+- path.module = get path for the current module 
+- path.root = get pathe for the root module 
+
+[Speacial Path Variable](https://developer.hashicorp.com/terraform/language/expressions/references#filesystem-and-workspace-info)
+
+```tf
+resource "aws_s3_object" "index_html" {
+  bucket = aws_s3_bucket.website_bucket.id
+  key    = "index.html"
+  source = "${path.root}public/index.html"
+}
+```
