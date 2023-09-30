@@ -1,5 +1,35 @@
 # Terraform Beginner Bootcamp 2023 week 1
 
+## Fixing Tags 
+
+[How to Delete Local and Remote Tags on git](https://devconnected.com/how-to-delete-local-and-remote-tags-on-git/)
+
+To delete a locla tag:
+
+```
+git tag -d <tagname>
+```
+To delete a remote tag:
+
+```
+git push --delete origin <tagname>
+```
+
+To confirm that the tag has been deleted both locally and remotely, you can use the following commands:
+
+To list all local tags, to ensure that the tag you wanted to delete is no longer in the list
+
+```
+git tag
+```
+
+to list all remote tag:
+
+```
+git ls-remote --tags origin
+```
+
+
 ## Root Module Structure 
 
 ```
