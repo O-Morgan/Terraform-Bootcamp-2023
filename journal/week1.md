@@ -4,14 +4,14 @@
 
 [How to Delete Local and Remote Tags on git](https://devconnected.com/how-to-delete-local-and-remote-tags-on-git/)
 
-To delete a locla tag:
+To delete a local tag:
 
-```
+```sh
 git tag -d <tagname>
 ```
 To delete a remote tag:
 
-```
+```sh
 git push --delete origin <tagname>
 ```
 
@@ -19,13 +19,13 @@ To confirm that the tag has been deleted both locally and remotely, you can use 
 
 To list all local tags, to ensure that the tag you wanted to delete is no longer in the list
 
-```
+```sh
 git tag
 ```
 
 to list all remote tag:
 
-```
+```sh
 git ls-remote --tags origin
 ```
 
@@ -264,3 +264,43 @@ resource "aws_s3_object" "index_html" {
   source = "${path.root}public/index.html"
 }
 ```
+
+## Terraform Locals 
+
+Locals allow us to define local variables and it can be very useful when we need to transform data into another format and have refrenced a variable
+
+[Local Values](https://developer.hashicorp.com/terraform/language/values/locals)
+
+```tf
+locals {
+    s3_origin_id = "MyS3Origin"
+}
+```
+
+## Terraform Data Source
+
+This allows us to source data from cloud resources, thsi is useful when we want to reference cloud resources without importing them. 
+
+```tf
+data "aws_caller_identity" "current" {}
+
+output "account_id" {
+  value = data.aws_caller_identity.current.account_id
+}
+```
+
+https://developer.hashicorp.com/terraform/language/data-sources
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/billing_service_account
+
+## Working with JSON
+
+We used the jsonencode to create the json policy inline in the hcl
+
+```js
+  jsonencode({"hello"="world"})
+{"hello":"world"}
+```
+
+[jsonencode](https://developer.hashicorp.com/terraform/language/functions/jsonencode)
+
