@@ -8,41 +8,24 @@
 # S3 bucket naming rules
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_metric
 resource "aws_s3_bucket" "website_bucket" {
-
-# Bucket Naming Rules
-# https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html 
-bucket = var.s3_bucket_name
-
-
-tags = {
-    UserUuid = var.user_uuid
-  }
+  bucket = var.s3_bucket_name
 }
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration
-
-resource "aws_s3_bucket_website_configuration" "website_configuration" {
-  bucket = aws_s3_bucket.website_bucket.bucket
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "error.html"
-  }
-}
-
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
-
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
 
 resource "aws_s3_object" "index_html" {
   bucket = aws_s3_bucket.website_bucket.id
-  key    = "index.html"
-  source = (var.index_html_filepath)
+  key = "index.html"
+  source = var.index_html_filepath
   content_type = "text/html"
 
-  etag   = filemd5(var.index_html_filepath)
-}
+  etag = filemd5(var.index_html_filepath)
+
+  lifecycle {
+    ignore_changes = [etag]
+    replace_triggered_by = [terraform_data.content_version.output]
+       
+    }
+  }
 
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
@@ -50,13 +33,19 @@ resource "aws_s3_object" "index_html" {
 resource "aws_s3_object" "error_html" {
   bucket = aws_s3_bucket.website_bucket.id
   key    = "error.html"
-  source = (var.error_html_filepath)
+  source = var.error_html_filepath
   content_type = "text/html"
 
   etag   = filemd5(var.error_html_filepath)
+  
+  #lifecycle {
+   # ignore_changes = [etag]
+ # }
 }
+# or // at the beginning of each comment line. This should resolve the "Unsupported block type" error you were encountering.
 
-#policy =data.aws_iam_policy_document.allow_access_from_another_account.json
+
+# Define a dependency on the content_version variable to trigger updates.
 resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = aws_s3_bucket.website_bucket.id
 
@@ -80,9 +69,12 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
     ]
   })
 }
-  #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity (to get account ID where ive put it in main.tf)
-                
-    #We could of just used this - "AWS:SourceaArn": data.aws_caller_identity.current.arn
-       
 
-    
+# now managed like a resource,control the state of the version just an imaginer object linke to variables and the trigger.
+resource "terraform_data" "content_version" {
+  input = var.content_version
+}
+
+
+
+
