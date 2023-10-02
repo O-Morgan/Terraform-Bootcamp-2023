@@ -72,3 +72,17 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     cloudfront_default_certificate = true
   }
 }
+
+resource "null_resource" "invalidate_cache" {
+  triggers = {
+    content_version = "${terraform.workspace}"
+  }
+
+  provisioner "local-exec" {
+    command = <<-EOT
+      aws cloudfront create-invalidation \
+        --distribution-id ${aws_cloudfront_distribution.s3_distribution.id} \
+        --paths "/*"
+    EOT
+  }
+}
