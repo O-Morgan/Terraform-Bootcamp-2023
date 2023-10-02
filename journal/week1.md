@@ -364,3 +364,17 @@ resource "aws_instance" "web" {
 }
 ```
 [Remote](https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec)
+
+### For Each Expressions
+
+let’s say you want to create multiple virtual machines with the same configuration. For cases like that, in Terraform you can use for_each
+
+```sh
+[for s in var.list :upper(s)]
+```
+
+
+[For Each Expressions Hashicorp Docs](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)
+
+
+[For Each Expressions External Examples](https://thenewstack.io/how-to-use-terraforms-for_each-with-examples/)
