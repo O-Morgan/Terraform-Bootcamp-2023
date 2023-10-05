@@ -8,12 +8,12 @@ tasks:
       source ./bin/set_tf_alias
       cp $PROJECT_ROOT/terraform.tfvars.example $PROJECT_ROOT/terraform.tfvars
   - name: sinatra
+  - name: sinatra
     before: | 
-      cd $PROJECT_ROOT || exit 1  # Exit if $PROJECT_ROOT is not set or invalid
-      gem install bundler        # Install Bundler if it's not already installed
-      bundle install            # Install gems specified in Gemfile
-      bundle exec ruby server.rb 
+      cd $PROJECT_ROOT
       cd terratowns_mock_server
+      bundle install
+      bundle exec ruby server.rb 
   - name: aws-cli
     env:
       AWS_CLI_AUTO_PROMPT: on-partial
