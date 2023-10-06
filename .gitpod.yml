@@ -1,6 +1,8 @@
 tasks:
  
   - name: terraform
+    env:
+      TF_LOG: DEBUG
     before: |
       cd $PROJECT_ROOT  
       source ./bin/install_terraform_cli
