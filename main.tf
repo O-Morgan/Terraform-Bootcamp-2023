@@ -18,7 +18,7 @@ terraform {
   }
   
 provider "terratowns" {
-  endpoint = "http//localhost:4567"
+  endpoint = "http://localhost:4567/api"
   user_uuid = "e328f4ab-b99f-421c-84c9-4ccea042c7d1" 
   token = "9b49b3fb-b8e9-483c-b703-97ba88eef8e0"
   
@@ -32,5 +32,16 @@ provider "terratowns" {
 #  content_version = var.content_version
 #  assets_path = var.assets_path
 
+resource "terratowns_home" "home" {
+name = "Funky Town 2023!"
+description = <<DESCRIPTION
+Welcome to Funky Town Central, the cyber-carnival of funkadelic wonders! Get ready to embark on a wild digital journey through a kaleidoscope of vibrant colors, infectious beats, and mind-bending visuals. Our website is a cosmic collision of retro cool and futuristic funk, where the '70s and '80s meet the 22nd century in a funky fusion like no other.
+DESCRIPTION
+domain_name = "http://3fdq3gz.cloudfront.net"
+town = "gamers-grotto"
+content_version = 1
+}
 
-  
+
+
+
