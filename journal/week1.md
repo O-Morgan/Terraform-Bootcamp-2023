@@ -1,5 +1,47 @@
 # Terraform Beginner Bootcamp 2023 week 1
 
+## Table of Contents 
+
+  * [Fixing Tags](#fixing-tags)
+  * [Root Module Structure](#root-module-structure)
+  * [Terraform and Input Variables](#terraform-and-input-variables)
+    + [Terraform Cloud Variables](#terraform-cloud-variables)
+    + [Loading Terraform Input Variables](#loading-terraform-input-variables)
+    + [var-file-flag](#var-file-flag)
+    + [terraform.tfvars](#terraformtfvars)
+    + [auto.tfvars](#autotfvars)
+    + [Order of terraform variables](#order-of-terraform-variables)
+    + [Terraform Import](#terraform-import)
+  * [Dealing with Configuration Drift](#dealing-with-configuration-drift)
+    + [What happens if we lose the State File](#what-happens-if-we-lose-the-state-file)
+    + [Fix Missing Resources with Terraform Import](#fix-missing-resources-with-terraform-import)
+    + [Fix Manual Configuration](#fix-mannual-configuration)
+    + [Dealing with Configuration Drift](#dealing-with-configuration-drift-1)
+    + [What happens if we lose the State File](#what-happens-if-we-lose-the-state-file-1)
+    + [Fix Missing Resources with Terraform Import](#fix-missing-resources-with-terraform-import-1)
+    + [Fix Mannual Configuration](#fix-mannual-configuration-1)
+    + [Fix using Terraform Refresh](#fix-using-terraform-refresh)
+  * [Terraform Modules](#terraform-modules)
+    + [Terraform Module Structure](#terraform-module-structure)
+    + [Passing Input Variables](#passing-input-variables)
+    + [Module Sources](#module-sources)
+  * [Considerations when using ChatGPT to write Terraform](#considerations-when-using-chatgpt-to-write-terraform)
+  * [Working with File in Terraform](#working-with-file-in-terraform)
+    + [fileexists function](#fileexists-function)
+    + [Filemd5](#filemd5)
+    + [Path Variable](#path-variable)
+  * [Terraform Locals](#terraform-locals)
+  * [Terraform Data Source](#terraform-data-source)
+  * [Working with JSON](#working-with-json)
+    + [Changing the Lifecycle of Resources](#changing-the-lifecycle-of-resources)
+  * [Terraform Data](#terraform-data)
+  * [Provisioners](#provisioners)
+    + [Local-exec](#local-exec)
+    + [Remote-exec](#remote-exec)
+    + [For Each Expressions](#for-each-expressions)
+
+
+
 ## Fixing Tags 
 
 [How to Delete Local and Remote Tags on git](https://devconnected.com/how-to-delete-local-and-remote-tags-on-git/)
