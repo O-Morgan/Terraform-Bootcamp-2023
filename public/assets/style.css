@@ -1,0 +1,171 @@
+/* Common styles for all screen sizes */
+
+body {
+    background-image: linear-gradient(to bottom, #0000ff 0%, #0000ff 33.33%, #ff0000 33.33%, #ff0000 66.66%, #0000ff 66.66%, #0000ff 100%);
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header, h2, h2 + p {
+    color: white;
+}
+
+header {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+/* Add spinning animation to the disco balls */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Style for the spinning image */
+.spinning-image {
+    width: 40% !important;
+    max-width: 400px;
+    height: auto;
+    animation: spin 5s infinite linear;
+    margin: .5in 0 auto;
+    background: black;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Position the disco balls on the left and right */
+.disco-ball {
+    position: absolute;
+    top: 0;
+    width: 300px;
+    z-index: 1;
+}
+
+.left {
+    left: 0;
+    top: 0;
+}
+
+.right {
+    right: 0;
+    top: 0;
+    display: block;
+}
+
+.disco-ball img {
+    width: 100%;
+    height: auto;
+}
+
+/* Center the spinning image vertically and horizontally */
+.center-spin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 350px);
+}
+
+/* Add margin-top to the footer */
+footer {
+    background-color: #0099cc;
+    padding: 14px;
+    color: white;
+    /* Remove margin-top for the footer */
+}
+
+/* Media queries for responsiveness */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+    .spinning-image {
+        width: 85%;
+    }
+    .header-title {
+        font-size: 3rem;
+    }
+    .header-description {
+        font-size: 2rem;
+    }
+    .cta-button {
+        font-size: 1.5rem;
+        top: -100px; /* Adjust the button position for smaller screens */
+    }
+    footer {
+        margin-top: -40px; /* Adjust the footer position for smaller screens */
+    }
+
+    /* Adjust image collage for tablets and smaller screens */
+    .image-collage {
+        bottom: 0.4in; /* Raise the collage by an inch */
+        padding: 20px; /* Reduce spacing around the images */
+    }
+
+    .image-collage img {
+        max-width: 150px; /* Decrease the maximum width for smaller images */
+    }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+    .header-title {
+        font-size: 2rem;
+    }
+    .header-description {
+        font-size: 1.5rem;
+    }
+    .cta-button {
+        font-size: 1rem;
+        top: -50px; /* Adjust the button position for mobile screens */
+    }
+    footer {
+        margin-top: -20px; /* Adjust the footer position for mobile screens */
+    }
+
+    /* Adjust image collage for mobile screens */
+    .image-collage {
+        bottom: 0.4in; /* Raise the collage by an inch */
+        padding: 10px; /* Reduce spacing around the images */
+    }
+
+    .image-collage img {
+        max-width: 100px; /* Decrease the maximum width for smaller images */
+    }
+}
+
+/* Add styles for the image collage section */
+.image-collage {
+    position: absolute; /* Position the images absolutely within the body */
+    display: flex;
+    justify-content: space-between; /* Spread the images evenly */
+    align-items: center; /* Align vertically center */
+    bottom: .4in; /* Raise the collage by an inch */
+    left: 0; /* Adjust left position to start from the left edge */
+    right: 0; /* Adjust right position to end at the right edge */
+    margin: 0 auto; /* Center the collage horizontally */
+    padding: 40px; /* Add some spacing around the images */
+}
+
+.image-collage img {
+    max-width: 200px; /* Increase the maximum width for bigger images */
+    height: auto; /* Maintain aspect ratio */
+
+    /* Create a circular shape for the images */
+    border-radius: 60%;
+}
+
+
