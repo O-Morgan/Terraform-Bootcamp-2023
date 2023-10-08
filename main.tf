@@ -1,44 +1,45 @@
 terraform {
   required_providers {
     terratowns = {
-      source = "local.providers/local/terratowns"
+      source  = "local.providers/local/terratowns"
       version = "1.0.0"
     }
   }
-
+}
 #  cloud {
-#    organization = "Owen_Morgan"
-
+#   organization = "Owen_Morgan"
 #    workspaces {
 #      name = "terra-house-of-funk"
 #    }
 # }
-#}
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs
-  }
+  
   
 provider "terratowns" {
-  endpoint = "http://localhost:4567/api"
-  user_uuid = "e328f4ab-b99f-421c-84c9-4ccea042c7d1" 
-  token = "9b49b3fb-b8e9-483c-b703-97ba88eef8e0"
+  endpoint = var.terratowns_endpoint
+  user_uuid = var.teacherseat_user_uuid 
+  token = var.terratowns_access_token
   
 }
-#module "terrahouse_aws" 
-#  source = "./modules/terrahouse_aws"
-#  user_uuid = var.user_uuid
-#  s3_bucket_name = var.s3_bucket_name
-#  index_html_filepath = "/workspace/terraform-beginner-bootcamp-2023/public/index.html"
-#  error_html_filepath = "/workspace/terraform-beginner-bootcamp-2023/public/error.html"
-#  content_version = var.content_version
-#  assets_path = var.assets_path
+module "terrahouse_aws" {
+  source = "./modules/terrahouse_aws"
+  user_uuid = var.teacherseat_user_uuid
+  s3_bucket_name = var.s3_bucket_name
+  index_html_filepath = "/workspace/terraform-beginner-bootcamp-2023/public/index.html"
+  error_html_filepath = "/workspace/terraform-beginner-bootcamp-2023/public/error.html"
+  content_version = var.content_version
+  assets_path = var.assets_path
+
+}
 
 resource "terratowns_home" "home" {
-name = "Funky Town 2023!"
+name = "RetroArcade!"
 description = <<DESCRIPTION
-Welcome to Funky Town Central, the cyber-carnival of funkadelic wonders! Get ready to embark on a wild digital journey through a kaleidoscope of vibrant colors, infectious beats, and mind-bending visuals. Our website is a cosmic collision of retro cool and futuristic funk, where the '70s and '80s meet the 22nd century in a funky fusion like no other.
+A hotdog might not qualify as a sandwich, but when it comes to gaming, I'll gladly debate the most pressing issues of our time, like whether or not to call it a "sandwicheater.
 DESCRIPTION
-domain_name = "http://3fdq3gz.cloudfront.net"
-town = "gamers-grotto"
+domain_name = "module.terrahouse_aws.cloudfront.net"
+#domain_name = "http://3fdq3gz.cloudfront.net"
+town = "missingo"
 content_version = 1
 }
 
