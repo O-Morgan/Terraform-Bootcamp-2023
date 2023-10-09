@@ -8,16 +8,13 @@
 - [Week 0 Journal](journal/week0.md)
 - [Week 1 Journal](journal/week1.md)
 
-<<<<<<< HEAD
 ## Extras
 - [GitHub Markdown ToC Generator](https://ecotrust-canada.github.io/markdown-toc/)
-=======
 
 ## Considerations with Terraform CLI Changes 
 The Terraform CLI instructions have to change due to gpg keyring changes, so we needed to refer to the latest install CLI instructions via Terraform Documuntation and change the script for install.
 
 [Install Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) 
-
 
 
 ## Considerations for Linux Distribution

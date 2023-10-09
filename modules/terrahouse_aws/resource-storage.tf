@@ -42,9 +42,6 @@ resource "aws_s3_object" "upload_assets" {
   }
 }
 
-
-
-
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_object
 
 resource "aws_s3_object" "error_html" {
@@ -60,6 +57,13 @@ resource "aws_s3_object" "error_html" {
  # }
 }
 # or // at the beginning of each comment line. This should resolve the "Unsupported block type" error you were encountering.
+
+resource "aws_s3_object" "css" {
+  bucket       = aws_s3_bucket.website_bucket.id
+  key          = "assets/style.css"  # S3 object key
+  source       = var.style_css_filepath  # Use the variable
+  content_type = "text/css"
+}
 
 
 # Define a dependency on the content_version variable to trigger updates.

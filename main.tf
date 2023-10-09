@@ -37,8 +37,8 @@ name = "RetroArcade!"
 description = <<DESCRIPTION
 A hotdog might not qualify as a sandwich, but when it comes to gaming, I'll gladly debate the most pressing issues of our time, like whether or not to call it a "sandwicheater.
 DESCRIPTION
-domain_name = "module.terrahouse_aws.cloudfront.net"
-#domain_name = "http://3fdq3gz.cloudfront.net"
+#domain_name = "module.terrahouse_aws.cloudfront.net"
+domain_name = "http://3edq3gz.cloudfront.net"
 town = "missingo"
 content_version = 1
 }

@@ -53,3 +53,10 @@ variable "assets_path" {
   description = "path to assest folder"
   type = string
 }
+
+variable "style_css_filepath" {
+  description = "The file path to style.css"
+  default     = "/workspace/terraform-beginner-bootcamp-2023/public/assets/style.css"  # Updated default path
+}
+
+
