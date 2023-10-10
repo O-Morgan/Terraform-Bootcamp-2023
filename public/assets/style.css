@@ -1,7 +1,7 @@
 /* Common styles for all screen sizes */
 body {
     background-image: linear-gradient(to bottom, #0000ff 0%, #0000ff 33.33%, #ff0000 33.33%, #ff0000 66.66%, #0000ff 66.66%, #0000ff 100%);
-    font-family: 'Indie Flower', cursive;
+    font-family: 'sans-serif',
     text-align: center;
     margin: 0;
     padding: 0;
