@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PizzaCake!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, blue, red, blue);
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        header {
+            background-color: transparent;
+            padding: 20px;
+        }
+        #title {
+            font-size: 48px; /* Increase title size */
+            color: white;
+        }
+        #pizza-image {
+            max-width: 40%; /* Make image a bit smaller */
+            margin: 20px auto;
+        }
+        #recipe {
+            font-size: 16px; /* Make recipe text a bit smaller */
+            margin: 10px auto; /* Reduce recipe margin */
+            max-width: 500px; /* Make recipe container a bit smaller */
+            text-align: left;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="title">PizzaCake!</h1>
+    </header>
+    <img id="pizza-image" src="assets/Pizza-Cake.jpg" alt="Pizza Cake">
+    <div id="recipe">
+        <h2>Recipe:</h2>
+        <p>
+            Ingredients:
+            <ul>
+                <li>1 pizza crust</li>
+                <li>1 cup tomato sauce</li>
+                <li>1 cup mozzarella cheese</li>
+                <li>1/2 cup pepperoni slices</li>
+                <li>1/2 cup sliced mushrooms</li>
+                <li>1/4 cup sliced olives</li>
+            </ul>
+        </p>
+        <p>
+            Instructions:
+            <ol>
+                <li>Preheat your oven to 425°F (220°C).</li>
+                <li>Roll out the pizza crust on a baking sheet.</li>
+                <li>Spread tomato sauce evenly over the crust.</li>
+                <li>Sprinkle mozzarella cheese, pepperoni, mushrooms, and olives on top.</li>
+                <li>Bake in the oven for 15-20 minutes or until the crust is golden and the cheese is bubbly.</li>
+                <li>Remove from the oven, slice, and enjoy your delicious Pizza Cake!</li>
+            </ol>
+        </p>
+    </div>
+</body>
+</html>

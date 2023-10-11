@@ -10,24 +10,26 @@ variable "teacherseat_user_uuid" {
   type = string
 }
 
-variable "s3_bucket_name" {
-type = string
+#variable "s3_bucket_name" {
+#  type = string
+#}
+
+variable "RetroArcade" {
+  type = object({
+    public_path = string
+    content_version = string
+  })
 }
 
-variable "index_html_filepath" {
-    type = string 
-  
+variable "PizzaCake" {
+  type = object({
+    public_path = string
+    content_version = string
+
+  })
 }
 
-variable "error_html_filepath" {
-    type = string
-}
-
-variable "content_version" {
-  type        = number
-}
-
-variable "assets_path" {
-  description = "path to assest folder"
-  type = string
-}
+#variable "assets_path" {
+#  description = "path to assest folder"
+#  type = string
+#}
