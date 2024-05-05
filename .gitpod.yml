@@ -11,7 +11,6 @@ tasks:
       cp $PROJECT_ROOT/terraform.tfvars.example $PROJECT_ROOT/terraform.tfvars
       source ./bin/build_provider
   - name: sinatra
-  - name: sinatra
     before: | 
       cd $PROJECT_ROOT
       cd terratowns_mock_server

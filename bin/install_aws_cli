@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 
+# Change to the /workspace directory
 cd /workspace
 
+# Remove any existing AWS CLI zip file to prevent conflicts
 rm -f '/workspace/awscliv2.zip'
+
+# Remove any existing AWS directory to ensure a clean installation
 rm -rf '/workspace/aws'
 
+# Download the latest AWS CLI version 2 installer for Linux x86_64
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+# Unzip the installer
 unzip awscliv2.zip
 
+# Run the install script with sudo to install AWS CLI globally
 sudo ./aws/install
 
+# Change directory back to the project root, assuming $PROJECT_ROOT is already set
 cd $PROJECT_ROOT
