@@ -1,4 +1,4 @@
- terraform {
+terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -7,8 +7,6 @@
   }
 }
 
-
-
-#https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity
-
+# Data source should be placed outside the terraform block
 data "aws_caller_identity" "current" {}
+
