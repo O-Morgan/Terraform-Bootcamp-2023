@@ -2,7 +2,7 @@
 
 <img src="image.png" style="width: 80%; height: 80%;" />
 
-
+This project was completed as part of the Terraform Beginner Bootcamp 2023, where all work was conducted over the six weeks of the course. It documents the learning process, challenges faced, and solutions implemented throughout the BootCamp.
 
 ## Weekly Journals
 - [Week 0 Journal](journal/week0.md)
